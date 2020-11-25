@@ -1,0 +1,13 @@
+table th {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+table tr {
+  font-size: 12px;
+}
+
+table tr td,
+th {
+  text-align: left;
+}
