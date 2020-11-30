@@ -328,14 +328,19 @@ export default {
         headers: { "content-type": "application/x-www-form-urlencoded" },
       };
 
-      axios
-        .get(this.endpoint + "ticket?token=" + this.token, config)
-        .then((response) => {
-          return this.setData(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        axios
+          .get(this.endpoint + "ticket?token=" + this.token, config)
+          .then((response) => {
+            return this.setData(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+
       // this.$router.push({ path: "/pesanan-sukses" });
     },
     loadSpekData: async function () {
@@ -353,8 +358,8 @@ export default {
     },
     startUp: async function () {
       await this.loadSpekData();
-      this.resetForm();
-      this.loadTicket();
+      await this.resetForm();
+      await this.loadTicket();
       setInterval(() => {
         this.loadTicket();
       }, 30000);
